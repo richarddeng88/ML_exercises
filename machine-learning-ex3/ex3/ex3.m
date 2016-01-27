@@ -4,7 +4,7 @@
 %  ------------
 % 
 %  This file contains code that helps you get started on the
-%  linear exercise. You will need to complete the following functions 
+%  linear exercise. You will need to complete the following functions      
 %  in this exericse:
 %
 %     lrCostFunction.m (logistic regression cost function)
