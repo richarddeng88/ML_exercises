@@ -62,13 +62,20 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X=[ones(m,1) X];
+# part 1: cost function
+a1 = X
+z2 = sigmoid(a1*Theta1');
+a2 = [ones(m, 1) z2];
+pred = sigmoid(a2*Theta2');
+ 
+ry = eye(num_labels)(y,:)
 
+J= sum(sum(-ry.*log(pred)-(1-ry).*log(1-pred)))/m
 
+#reg = sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(: , 2:end).^2));
 
-
-
-
-
+#J = J + lambda/(2*m)*reg;
 
 
 
