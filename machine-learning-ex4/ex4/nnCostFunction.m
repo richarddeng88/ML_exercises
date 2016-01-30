@@ -68,20 +68,15 @@ a1 = X
 z2 = sigmoid(a1*Theta1');
 a2 = [ones(m, 1) z2];
 pred = sigmoid(a2*Theta2');
- 
-ry = eye(num_labels)(y,:)
 
+ry = eye(num_labels)(y,:) #
 J= sum(sum(-ry.*log(pred)-(1-ry).*log(1-pred)))/m
 
-#reg = sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(: , 2:end).^2));
+# when regularized, lambda is not equal 0. 
+reg = (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)))*lambda/(2*m)
+J = J + reg;
 
-#J = J + lambda/(2*m)*reg;
-
-
-
-
-
-
+# part 2. 
 
 
 
