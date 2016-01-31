@@ -64,23 +64,36 @@ Theta2_grad = zeros(size(Theta2));
 
 X=[ones(m,1) X];
 # part 1: cost function
-a1 = X
+a1 = X;
 z2 = sigmoid(a1*Theta1');
 a2 = [ones(m, 1) z2];
 pred = sigmoid(a2*Theta2');
+a3 = pred;
 
-ry = eye(num_labels)(y,:) #
-J= sum(sum(-ry.*log(pred)-(1-ry).*log(1-pred)))/m
+ry = eye(num_labels)(y,:); #
+J= sum(sum(-ry.*log(pred)-(1-ry).*log(1-pred)))/m;
 
 # when regularized, lambda is not equal 0. 
-reg = (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)))*lambda/(2*m)
+reg = (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)))*lambda/(2*m);
 J = J + reg;
 
 # part 2. 
 
+for i= 1:num_labels,
+delta_3(:,i) = a3(:,i) - y;
+end;
+# delta_3 = a3 - ry;
 
+delta_2 = (delta_3*Theta2(:,2:end)).*sigmoidGradient(a1*Theta1');
 
-
+#Delta_1 = delta_2'*a1(:,2:end);
+#Delta_2 = delta_3'*a2(:,2:end);
+Delta_1=0;
+Delta_2=0;
+Delta_1 = Delta_1+delta_2'*a1(:,2:end);
+Delta_2 = Delta_2+delta_3'*a2(:,2:end);
+Theta1_grad = Delta_1/m;
+Theta2_grad = Delta_2/m;
 
 % -------------------------------------------------------------
 
