@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 1;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -218,3 +218,16 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+
+# calculate the test data set
+lambda = 3;
+[theta] = trainLinearReg(X_poly, y, lambda);
+
+# normalize the test set
+X_poly_test = polyFeatures(Xtest, p);
+X_poly_test = bsxfun(@minus,X_poly_test, mu);
+X_poly_test = bsxfun(@rdivide, X_poly_test, sigma);
+X_poly_test = [ones(size(X_poly_test, 1), 1), X_poly_test]; 
+
+error_test = sum((X_poly_test*theta - ytest).^2)/(2*size(ytest,1));
