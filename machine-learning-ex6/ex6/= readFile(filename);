@@ -1,0 +1,27 @@
+'fclose' is a built-in function from the file libinterp/corefcn/file-io.cc
+
+ -- Built-in Function:  fclose (FID)
+ -- Built-in Function:  fclose ("all")
+ -- Built-in Function: STATUS = fclose ("all")
+     Close the file specified by the file descriptor FID.
+
+     If successful, `fclose' returns 0, otherwise, it returns -1.  The
+     second form of the `fclose' call closes all open files except
+     `stdout', `stderr', and `stdin'.
+
+     Programming Note: When using "all" the file descriptors associated
+     with gnuplot will also be closed.  This will prevent further
+     plotting with gnuplot until Octave is closed and restarted.
+
+     See also: fopen, fflush, freport.
+
+
+
+
+Additional help for built-in functions and operators is
+available in the online version of the manual.  Use the command
+'doc <topic>' to search the manual index.
+
+Help and information about Octave is also available on the WWW
+at http://www.octave.org and via the help@octave.org
+mailing list.
