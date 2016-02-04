@@ -20,13 +20,22 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+distance = zeros(1,K);
+#for i = 1:size(X,1), 
+#    for j = 1:K,
+#        distance(j) = sqrt(sum((X(i,:)-centroids(j,:)).^2));
+#    end;
+#    [min number]= max(distance,[],2);
+#    idx(i) = number;
+#end;
 
-
-
-
-
-
-
+for i = 1:size(X,1),
+	T = [];
+	for j = 1 : K,
+		T = [T ; X(i,:)];
+	end;
+	[Max , idx(i)] = min(sum((T - centroids).^2 , 2));
+end;
 % =============================================================
 
 end
