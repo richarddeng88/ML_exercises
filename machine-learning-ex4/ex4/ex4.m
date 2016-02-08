@@ -143,6 +143,9 @@ initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
 %
 fprintf('\nChecking Backpropagation... \n');
 
+[J grad]= nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
+                   num_labels, X, y, lambda);
+
 %  Check gradients by running checkNNGradients
 checkNNGradients;
 
